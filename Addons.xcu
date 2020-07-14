@@ -5,19 +5,19 @@
    <node oor:name="AddonUI">
 
       <node oor:name="OfficeToolbarMerging">
-         <node oor:name="HelloWorldLibrary.OfficeToolbarMerging" oor:op="replace">
+         <node oor:name="org.libreoffice.Hello" oor:op="replace">
             <node oor:name="N001" oor:op="replace">
                <prop oor:name="MergeContext" oor:type="xs:string">
-		  <value>com.sun.star.sheet.SpreadsheetDocument</value>
+                  <value>com.sun.star.text.TextDocument</value>
                </prop>
                <prop oor:name="MergeToolBar" oor:type="xs:string">
                   <value>standardbar</value>
                </prop>
                <prop oor:name="MergePoint" oor:type="xs:string">
-                  <value>.uno:ExportDirectToPDF</value>
+                  <value>.uno:HyperlinkDialog</value>
                </prop>
                <prop oor:name="MergeCommand" oor:type="xs:string">
-                  <value>AddAfter</value>
+                  <value>AddBefore</value>
                </prop>
                <prop oor:name="MergeFallback" oor:type="xs:string">
                   <value>AddLast</value>
@@ -31,8 +31,8 @@
                         <value xml:lang="en">Hello World</value>
                      </prop>
                      <prop oor:name="URL" oor:type="xs:string">
-		  	<value>vnd.sun.star.script:HelloWorldLibrary.Module1.HelloWorldMacro?language=Basic&amp;location=application</value>
-	       	     </prop>
+                        <value>service:org.libreoffice.Hello</value>
+                     </prop>
                      <prop oor:name="Target" oor:type="xs:string">
                         <value>_self</value>
                      </prop>
@@ -43,13 +43,13 @@
       </node>
 
       <node oor:name="Images">
-         <node oor:name="HelloWorldLibrary.OfficeToolbarMerging.N001" oor:op="replace">
-	    <prop oor:name="URL" oor:type="xs:string">
-               <value>vnd.sun.star.script:HelloWorldLibrary.Module1.HelloWorldMacro?language=Basic&amp;location=application</value>
+         <node oor:name="org.libreoffice.Hello.N001" oor:op="replace">
+            <prop oor:name="URL" oor:type="xs:string">
+               <value>service:org.libreoffice.Hello</value>
             </prop>
             <node oor:name="UserDefinedImages">
                <prop oor:name="ImageSmallURL" oor:type="xs:string">
-                  <value>%origin%/icons/image_26.bmp</value>
+                  <value>%origin%/images/image_26.bmp</value>
                </prop>
             </node>
          </node>
