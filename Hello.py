@@ -1,7 +1,9 @@
+
 import uno
 import unohelper
 
 from com.sun.star.task import XJobExecutor
+import turkishnlp
 
 class HelloWorldJob(unohelper.Base, XJobExecutor):
     def __init__(self, ctx):
