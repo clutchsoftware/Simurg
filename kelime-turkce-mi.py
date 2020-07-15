@@ -2,59 +2,30 @@ from trnlp import *
 import array as arr
 
 
-f = open("dosya.txt", "r")
+girilen_Kelime = open("dosya.txt", "r")
 veri_seti = open("uniq_final_final.txt","r")
-satir = veri_seti.readlines()
+veri_satiri = veri_seti.readlines()
 
-obj = TrnlpToken()
-obj.settext(f.read())
+nesne_Ilk = TrnlpToken()
+nesne_Ilk.settext(girilen_Kelime.read())
 
-liste = list()
-liste2 = list()
-for x in  obj.wordtoken:
-    obj2 = TrnlpWord()
-    obj2.setword(x)
-    a = obj2.get_stem
+for aranan_Kelime in  nesne_Ilk.wordtoken:
+    nesne_Final = TrnlpWord()
+    nesne_Final.setword(aranan_Kelime)
+    son_Kelime = nesne_Final.get_stem.lower()
 
-    if (obj2.get_stem == ''):
-        a = x
+    if (nesne_Final.get_stem == ''):
+        son_Kelime = aranan_Kelime
 
-    isTurkish = False 
+    kelime_Turkcemi = False 
 
-    for lines in satir:
-        if(a==lines[0:len(lines)-1 ]):
-            isTurkish = True
+    for gezilen_Satir in veri_satiri:
+        if(son_Kelime==gezilen_Satir[0:len(gezilen_Satir)-1 ]):
+            kelime_Turkcemi = True
             break
     
-    if isTurkish :
-        print(a + " türkçedir.")
+    if kelime_Turkcemi :
+        print(son_Kelime + " türkçedir.")
 
     else:
-        print(a + " türkçe değildir.")
-
-
-
-            
-            
-
-        
-    
-
-
-
-
-
-
-
-
-
-
-"""import turkishnlp
-from turkishnlp import detector
-obj = detector.TurkishNLP()
-obj.create_word_set()
-
-
-
-f = open("dosya.txt", "r")
-print(obj.is_turkish(f.read()))"""
+        print(son_Kelime + " türkçe değildir.")
