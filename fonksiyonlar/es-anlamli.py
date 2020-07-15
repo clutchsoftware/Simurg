@@ -6,7 +6,7 @@ def es_anlamli_kelimeler(kelime):
     kelimeson.setword(kelime)
     kelime=kelimeson.get_stem
     print(kelime)
-    dosya = open('kelime-esanlamlisi.txt', 'r') 
+    dosya = open('../data/es_anlamli_Kelimeler.txt', 'r') 
     Lines = dosya.readlines()
     count=0 
     for line in Lines:

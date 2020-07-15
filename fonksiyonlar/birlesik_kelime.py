@@ -1,7 +1,6 @@
   
   
-f = open("out_of_digits_dataset.txt", "r")
-#f = open("dosya.txt", "r")
+f = open("../data/out_of_digits_dataset.txt", "r")
 lines = f.readlines()
 kelime = "eme"
 kelimelerbacıden

@@ -4,12 +4,12 @@ import pandas as pd
 import csv
 
 #Data set import
-data = pd.read_csv("data/dogruBilinenYanlislar.csv") 
+data = pd.read_csv("../data/dogruBilinenYanlislar.csv") 
 data_yanlis_listesi = list(data["yanlis"])
 data_dogru_listesi = list(data["dogru"])
 
 #text dosyasını okuma.
-f = open("text.txt")
+f = open("../text.txt")
 ana_metin = f.read()
 parcalanmis_ana_metin_listesi = ana_metin.split(" ")
 f.close()
