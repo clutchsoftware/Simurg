@@ -1,2 +1,0 @@
-# Simurg
-Will be update.
