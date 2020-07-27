@@ -13,6 +13,7 @@ from PyQt5.QtWidgets import *
 from PyQt5 import QtGui
 
 class MainWindow(QMainWindow):
+    fileName=""
     def __init__(self):
         QMainWindow.__init__(self)
         #self.setStyleSheet("background-color: white;") 
@@ -23,6 +24,7 @@ class MainWindow(QMainWindow):
         self.textareaSimurg()
         self.selectItem()
         self.chooseSimurgFunciton()
+        text=QPlainTextEdit()
 
     def chooseSimurgFunciton(self):
         pybutton = QPushButton('Fonksiyonu Uygula', self)
@@ -31,7 +33,7 @@ class MainWindow(QMainWindow):
 
 
     def choose_file_button(self):
-        pybutton = QPushButton('Dosya Seç', self)
+        pybutton = QPushButton('Dosya Sec', self)
         pybutton.clicked.connect(self.chooseFile)
         pybutton.resize(100,32)
         pybutton.move(10, 5)
@@ -39,17 +41,21 @@ class MainWindow(QMainWindow):
     def chooseFile(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "","All Files (*);;Python Files (*.py)", options=options)
-        if fileName:
-            print(fileName)
+        self.fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "","All Files (*);;Python Files (*.py)", options=options)
+        self.text.setPlainText(open(self.fileName).read())
+        if self.fileName:
+            print(self.fileName)
         print('Clicked Pyqt button.')
 
     def textareaMain(self):
-        self.b = QPlainTextEdit(self)
-        self.b.insertPlainText("Ana yazı buraya gelecek.\n")
-        self.b.move(10,60) #1.para sol sağ 2. para alt-üst
-        self.b.resize(525,450)
-
+        self.text = QPlainTextEdit(self)
+        self.text.insertPlainText("Ana yazı buraya gelecek.\n")
+        self.text.move(10,60) #1.para sol sağ 2. para alt-üst
+        self.text.resize(525,450)
+        #yazıldıkça veriyi çek.
+        self.text.textChanged.connect(
+            lambda: print(self.text.document().toPlainText()))
+            
     def textareaSimurg(self):
         self.b = QPlainTextEdit(self)
         self.b.insertPlainText("Simurg sonucu buraya gelecek. Altı çizili bir şekilde.\n")
