@@ -57,7 +57,6 @@ class MainWindow(QMainWindow):
 
     def textareaMain(self):
         self.text = QPlainTextEdit(self)
-        self.text.insertPlainText("Ana yazı buraya gelecek.\n")
         self.text.move(10,60) #1.para sol sağ 2. para alt-üst
         self.text.resize(525,450)
         #yazıldıkça veriyi çek.
@@ -69,8 +68,7 @@ class MainWindow(QMainWindow):
 
     def handleSelectionChanged(self):
         cursor = self.text.textCursor()
-        print ("Selection start: %d end: %d" % 
-           (cursor.selectionStart(), cursor.selectionEnd()))
+        #print ("Selection start: %d end: %d" % (cursor.selectionStart(), cursor.selectionEnd()))
         string=str(self.text.document().toPlainText())
         print("\033[1;31m"+string[cursor.selectionStart():cursor.selectionEnd()]+"\033[0m")
         word=string[cursor.selectionStart():cursor.selectionEnd()]
@@ -93,7 +91,7 @@ class MainWindow(QMainWindow):
 
     def textareaSimurg(self):
         self.outputText = QTextEdit(self)
-        self.outputText.insertPlainText("Simurg sonucu buraya gelecek. Altı çizili bir şekilde.\n")
+        
         self.outputText.move(545,60) #1.para sol sağ 2. para alt-üst
         self.outputText.resize(525,450)
 
@@ -112,24 +110,32 @@ class MainWindow(QMainWindow):
         for count in range(self.combo_box.count()):
             print (self.combo_box.itemText(count))
         print ("Current index",i,"selection changed ",self.combo_box.currentText())
-        if(i==2):#DogruYanlişFonksiyonu
-            metin=self.text.document().toPlainText()
-            metin_dizisi=metin_temizle(metin)
-            islem_goren_metin_dizisi=[]
-            for i in metin_dizisi:
-                kelimestr=str(dogruBilinenYanlislar(i))+" "
-                islem_goren_metin_dizisi.append(kelimestr)
-                if str(dogruBilinenYanlislar(i)) in "None" :
-                    black = QColor(0, 0, 0)
-                    self.outputText.setTextColor(black)
-                    self.outputText.insertPlainText(i+" ")
-                else:
-                    redColor = QColor(255, 0, 0)
-                    self.outputText.setTextColor(redColor)
-                    self.outputText.insertPlainText(str(dogruBilinenYanlislar(i))+" ")
-            
 
+        if(i==2):#DogruYanlişFonksiyonu
+            self.outputText.clear()
+            self.dogruYanlis()
     
+
+    def dogruYanlis(self):
+        self.outputText.clear()
+        islem_goren_metin_dizisi=[]
+        metin_dizisi=[]
+        metin_dizisi.clear()
+
+        metin=self.text.document().toPlainText()
+        metin_dizisi=metin_temizle(metin)
+        
+        for i in metin_dizisi:
+            islem_goren_metin_dizisi.append(str(dogruBilinenYanlislar(i))+" ")
+    
+            if str(dogruBilinenYanlislar(i)) in "None" :
+                black = QColor(0, 0, 0)
+                self.outputText.setTextColor(black)
+                self.outputText.insertPlainText(i+" ")
+            else:
+                redColor = QColor(255, 0, 0)
+                self.outputText.setTextColor(redColor)
+                self.outputText.insertPlainText(str(dogruBilinenYanlislar(i))+" ")
 
 
 if __name__ == "__main__":
