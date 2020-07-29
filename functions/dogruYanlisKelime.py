@@ -5,7 +5,7 @@ import csv
 
 def dogruBilinenYanlislar(kelime):
     #Data set import
-    data = pd.read_csv("data/dogruBilinenYanlislar.csv") 
+    data = pd.read_csv("/home/zeki/NLP/Simurg/data/dogruBilinenYanlislar.csv") 
     data_yanlis_listesi = list(data["yanlis"])
     data_dogru_listesi = list(data["dogru"])
 

@@ -2,7 +2,7 @@ from trnlp import *
 
 
 girilen_Kelime = open("../text.txt", "r")
-veri_seti = open("../data/benzersiz_Kelimeler.txt","r")
+veri_seti = open("/data/benzersiz_Kelimeler.txt","r")
 veri_satiri = veri_seti.readlines()
 
 nesne_Ilk = TrnlpToken()

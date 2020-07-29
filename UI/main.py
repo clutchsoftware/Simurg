@@ -1,4 +1,5 @@
 import sys
+import os
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QLabel, QGridLayout, QWidget
 from PyQt5.QtWidgets import QPushButton,QTextEdit
@@ -12,12 +13,10 @@ from PyQt5.QtCore import QDir, Qt
 from PyQt5.QtWidgets import *
 from PyQt5 import QtGui
 from PyQt5.QtGui import QPainter, QColor, QPen,QCursor
-
-sys.path.insert(1,'/home/tubi/Desktop/SimurgProje/Simurg/functions/')
-
+path = os.getcwd()
+sys.path.insert(1,path + '/functions/')
 from dogruYanlisKelime import dogruBilinenYanlislar
 from SimurgKelimeTemizle import metin_temizle
-
 
 class MainWindow(QMainWindow):
     fileName=""
@@ -59,8 +58,8 @@ class MainWindow(QMainWindow):
         self.text = QPlainTextEdit(self)
         self.text.move(10,60) #1.para sol sağ 2. para alt-üst
         self.text.resize(525,450)
-        #yazıldıkça veriyi çek.
-        self.text.textChanged.connect(
+       
+        self.text.textChanged.connect( #yazıldıkça veriyi çek.
             lambda: print(self.text.document().toPlainText()))
         self.text.selectionChanged.connect(self.handleSelectionChanged)
         self.text.setContextMenuPolicy(Qt.CustomContextMenu)
@@ -68,17 +67,11 @@ class MainWindow(QMainWindow):
 
     def handleSelectionChanged(self):
         cursor = self.text.textCursor()
-        #print ("Selection start: %d end: %d" % (cursor.selectionStart(), cursor.selectionEnd()))
         string=str(self.text.document().toPlainText())
         print("\033[1;31m"+string[cursor.selectionStart():cursor.selectionEnd()]+"\033[0m")
         word=string[cursor.selectionStart():cursor.selectionEnd()]
         redColor = QColor(255, 0, 0)
         blue = QColor(0, 0, 255)
-        #self.outputText.setTextColor(redColor)
-        #self.outputText.insertPlainText(" "+word)
-        #self.outputText.setTextBackgroundColor(blue)
-        #self.outputText.insertPlainText(" selam ")
-
 
     def showMenu(self,pos):
         contextMenu = QMenu(self)
@@ -91,7 +84,6 @@ class MainWindow(QMainWindow):
 
     def textareaSimurg(self):
         self.outputText = QTextEdit(self)
-        
         self.outputText.move(545,60) #1.para sol sağ 2. para alt-üst
         self.outputText.resize(525,450)
 
@@ -102,8 +94,6 @@ class MainWindow(QMainWindow):
         self.combo_box.addItems(geek_list)
         self.combo_box.setCurrentIndex(0)
         self.combo_box.currentIndexChanged.connect(self.selectionchange)
-    
-    
     
     def selectionchange(self,i):
         print ("Items in the list are :")

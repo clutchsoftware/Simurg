@@ -6,13 +6,14 @@ def es_anlamli_kelimeler(kelime):
     kelimeson.setword(kelime)
     kelime=kelimeson.get_stem
     print(kelime)
-    dosya = open('../data/es_anlamli_Kelimeler.txt', 'r') 
+    dosya = open('/home/zeki/NLP/Simurg/data/es_anlamli_Kelimeler.txt', 'r') 
     Lines = dosya.readlines()
     count=0 
     for line in Lines:
         tindex=line.index("\t")
         if(line[0:tindex]==kelime):
             print("Line{}: {}".format(count,line.strip()[tindex+1:len(line)-1]))
+            count += 1
 
 
 es_anlamli_kelimeler("zürriyetler")

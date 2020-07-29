@@ -189,6 +189,3 @@ elif ozne_flag == True and l_n_flag == False:
     print(text, " (ETKEN)")
 elif ozne_flag == True and l_n_flag == True:
     print(text, " (ÇATI BAKIMINDAN UYUMSUZDUR!)")
-
-
-
