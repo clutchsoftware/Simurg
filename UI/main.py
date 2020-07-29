@@ -17,6 +17,7 @@ path = os.getcwd()
 sys.path.insert(1,path + '/functions/')
 from dogruYanlisKelime import dogruBilinenYanlislar
 from SimurgKelimeTemizle import metin_temizle
+from EsAnlamli import *
 
 class MainWindow(QMainWindow):
     fileName=""
@@ -66,20 +67,32 @@ class MainWindow(QMainWindow):
 
     def handleSelectionChanged(self):
         cursor = self.text.textCursor()
+        self.select_start = cursor.selectionStart()
+        self.select_end = cursor.selectionEnd()
+
+        print ("Selection start: %d end: %d" % 
+           (cursor.selectionStart(), cursor.selectionEnd()))
         string=str(self.text.document().toPlainText())
         print("\033[1;31m"+string[cursor.selectionStart():cursor.selectionEnd()]+"\033[0m")
         word=string[cursor.selectionStart():cursor.selectionEnd()]
+        self.selected_word=string[cursor.selectionStart():cursor.selectionEnd()]
         redColor = QColor(255, 0, 0)
         blue = QColor(0, 0, 255)
 
     def showMenu(self,pos):
         contextMenu = QMenu(self)
-        newAct = contextMenu.addAction("New")
-        openAct = contextMenu.addAction("Open")
-        quitAct = contextMenu.addAction("Quit")
-        action = contextMenu.exec_(self.mapToGlobal(pos))
-        if action == quitAct:
-            self.close()
+        newAct = contextMenu.addAction("Default")
+        acts = list()
+        es_anlamlilar = list()
+        es_anlamlilar = es_anlamli_kelimeler(self.selected_word)
+        for i in es_anlamlilar:
+            acts.append(contextMenu.addAction(i))
+
+        action = contextMenu.exec(self.mapToGlobal(pos))
+        """
+        for i in range(len(acts)):
+            if acts[i] == action:
+                print(es_anlamlilar[i])"""
 
     def textareaSimurg(self):
         self.outputText = QTextEdit(self)

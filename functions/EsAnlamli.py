@@ -1,26 +1,19 @@
 from trnlp import *
 def es_anlamli_kelimeler(kelime):
-    
+    kelimes=list()
     kelime=kelime.lower()
     kelimeson=TrnlpWord()
     kelimeson.setword(kelime)
     kelime=kelimeson.get_stem
     print(kelime)
-    dosya = open('/home/zeki/NLP/Simurg/data/es_anlamli_Kelimeler.txt', 'r') 
+    dosya = open('data/es_anlamli_Kelimeler.txt', 'r',encoding="utf-8") 
     Lines = dosya.readlines()
     count=0 
     for line in Lines:
+
         tindex=line.index("\t")
         if(line[0:tindex]==kelime):
+            kelimes.append(line.strip()[tindex+1:len(line)-1])
             print("Line{}: {}".format(count,line.strip()[tindex+1:len(line)-1]))
-            count += 1
-
-
-es_anlamli_kelimeler("zürriyetler")
-
-
-
-#a="zurriyet\taasdasd\n"
-#tindex=a.index("\t")
-#print(a[0:tindex])
-#print(a[tindex+1:len(a)-1])
+            count=count+1
+    return kelimes
