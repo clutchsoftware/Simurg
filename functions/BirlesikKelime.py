@@ -1,5 +1,3 @@
-  
-  
 import os
 
 """
@@ -18,8 +16,8 @@ bulamazsa aramayı devam ettiriyor.
 
 
 """
-print(os.getcwd())
-f = open("data/out_of_digits_dataset.txt", "r",encoding="utf-8")
+path = os.getcwd()
+f = open(path + "data/out_of_digits_dataset.txt", "r",encoding="utf-8")
 lines = f.readlines()
 
 def kelime_bul (kelime):

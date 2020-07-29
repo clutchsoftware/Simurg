@@ -22,7 +22,6 @@ class MainWindow(QMainWindow):
     fileName=""
     def __init__(self):
         QMainWindow.__init__(self)
-        #self.setStyleSheet("background-color: white;") 
         self.setMinimumSize(QSize(1080, 720))    
         self.setWindowTitle("Simurg") 
         self.choose_file_button()

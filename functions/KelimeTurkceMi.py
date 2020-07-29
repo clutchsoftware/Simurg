@@ -1,30 +1,32 @@
+import os
 from trnlp import *
 
+path = os.getcwd()
+veri_seti = open(path + "/data/benzersiz_Kelimeler.txt","r")
+def kelime_Turkcemi(girilen_Kelime):
 
-girilen_Kelime = open("../text.txt", "r")
-veri_seti = open("/data/benzersiz_Kelimeler.txt","r")
-veri_satiri = veri_seti.readlines()
+    veri_satiri = veri_seti.readlines()
 
-nesne_Ilk = TrnlpToken()
-nesne_Ilk.settext(girilen_Kelime.read())
+    nesne_Ilk = TrnlpToken()
+    nesne_Ilk.settext(girilen_Kelime)
 
-for aranan_Kelime in  nesne_Ilk.wordtoken:
-    nesne_Final = TrnlpWord()
-    nesne_Final.setword(aranan_Kelime)
-    son_Kelime = nesne_Final.get_stem.lower()
+    for aranan_Kelime in  nesne_Ilk.wordtoken:
+        nesne_Final = TrnlpWord()
+        nesne_Final.setword(aranan_Kelime)
+        son_Kelime = nesne_Final.get_stem.lower()
 
-    if (nesne_Final.get_stem == ''):
-        son_Kelime = aranan_Kelime
+        if (nesne_Final.get_stem == ''):
+            son_Kelime = aranan_Kelime
 
-    kelime_Turkcemi = False 
+        kelime_Turkcemi = False 
 
-    for gezilen_Satir in veri_satiri:
-        if(son_Kelime==gezilen_Satir[0:len(gezilen_Satir)-1 ]):
-            kelime_Turkcemi = True
-            break
-    
-    if kelime_Turkcemi :
-        print(son_Kelime + " türkçedir.")
+        for gezilen_Satir in veri_satiri:
+            if(son_Kelime==gezilen_Satir[0:len(gezilen_Satir)-1 ]):
+                kelime_Turkcemi = True
+                break
+        
+        if kelime_Turkcemi :
+            print(True)
 
-    else:
-        print(son_Kelime + " türkçe değildir.")
+        else:
+            print(False)
