@@ -1,16 +1,17 @@
 import sys
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMainWindow, QLabel, QGridLayout, QWidget
-from PyQt5.QtWidgets import QPushButton
+from PyQt5.QtWidgets import QPushButton,QTextEdit
 from PyQt5.QtCore import QSize  
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import (QApplication, QCheckBox, QColorDialog, QDialog,
                              QErrorMessage, QFileDialog, QFontDialog, QFrame, QGridLayout,
-                             QInputDialog, QLabel, QLineEdit, QMessageBox, QPushButton)
+                             QInputDialog, QLabel, QLineEdit, QMessageBox, QPushButton, QMenu)
 
 from PyQt5.QtCore import QDir, Qt
 from PyQt5.QtWidgets import *
 from PyQt5 import QtGui
+from PyQt5.QtGui import QPainter, QColor, QPen,QCursor
 
 class MainWindow(QMainWindow):
     fileName=""
@@ -25,6 +26,7 @@ class MainWindow(QMainWindow):
         self.selectItem()
         self.chooseSimurgFunciton()
         text=QPlainTextEdit()
+        outputText = QTextEdit()
 
     def chooseSimurgFunciton(self):
         pybutton = QPushButton('Fonksiyonu Uygula', self)
@@ -55,12 +57,41 @@ class MainWindow(QMainWindow):
         #yazıldıkça veriyi çek.
         self.text.textChanged.connect(
             lambda: print(self.text.document().toPlainText()))
-            
+        self.text.selectionChanged.connect(self.handleSelectionChanged)
+        
+
+    def handleSelectionChanged(self):
+        cursor = self.text.textCursor()
+        print ("Selection start: %d end: %d" % 
+           (cursor.selectionStart(), cursor.selectionEnd()))
+        string=str(self.text.document().toPlainText())
+        print("\033[1;31m"+string[cursor.selectionStart():cursor.selectionEnd()]+"\033[0m")
+        word=string[cursor.selectionStart():cursor.selectionEnd()]
+        redColor = QColor(255, 0, 0)
+        blue = QColor(0, 0, 255)
+        #self.outputText.setTextColor(redColor)
+        #self.outputText.insertPlainText(" "+word)
+        #self.outputText.setTextBackgroundColor(blue)
+        #self.outputText.insertPlainText(" selam ")
+        self.text.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.text.customContextMenuRequested.connect(self.showMenu)
+
+    
+
+    def showMenu(self,pos):
+        contextMenu = QMenu(self)
+        newAct = contextMenu.addAction("New")
+        openAct = contextMenu.addAction("Open")
+        quitAct = contextMenu.addAction("Quit")
+        action = contextMenu.exec_(self.mapToGlobal(pos))
+        if action == quitAct:
+            self.close()
+
     def textareaSimurg(self):
-        self.b = QPlainTextEdit(self)
-        self.b.insertPlainText("Simurg sonucu buraya gelecek. Altı çizili bir şekilde.\n")
-        self.b.move(545,60) #1.para sol sağ 2. para alt-üst
-        self.b.resize(525,450)
+        self.outputText = QTextEdit(self)
+        self.outputText.insertPlainText("Simurg sonucu buraya gelecek. Altı çizili bir şekilde.\n")
+        self.outputText.move(545,60) #1.para sol sağ 2. para alt-üst
+        self.outputText.resize(525,450)
 
     def selectItem(self):
         self.combo_box = QComboBox(self)
@@ -75,7 +106,11 @@ class MainWindow(QMainWindow):
         for count in range(self.combo_box.count()):
             print (self.combo_box.itemText(count))
         print ("Current index",i,"selection changed ",self.combo_box.currentText())
+        if(i==2):
+            metin=self.text.document().toPlainText()
+
     
+
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv) #def
