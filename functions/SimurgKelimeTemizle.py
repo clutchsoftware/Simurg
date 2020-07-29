@@ -45,14 +45,19 @@ def kelime_temizle(kelime):
         return kelime
 
 def metin_temizle(metin):
+    temizlenmis_metin.clear()
     metin_listesi = metin.split(" ")
     for i in metin_listesi:
         temizlenmis_metin.append(kelime_temizle(i).lower())
     return temizlenmis_metin
 
-"""!!!!
+'''
+
+
+
 if 32 in filtre1 or filtre2:
     print("true")
 
     0 or 0 = 1 ekrana true yazdırır.
-"""
+
+'''
