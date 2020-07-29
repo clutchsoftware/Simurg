@@ -13,6 +13,12 @@ from PyQt5.QtWidgets import *
 from PyQt5 import QtGui
 from PyQt5.QtGui import QPainter, QColor, QPen,QCursor
 
+sys.path.insert(1,'/home/tubi/Desktop/SimurgProje/Simurg/functions/')
+
+from dogruYanlisKelime import dogruBilinenYanlislar
+from SimurgKelimeTemizle import metin_temizle
+
+
 class MainWindow(QMainWindow):
     fileName=""
     def __init__(self):
@@ -58,7 +64,8 @@ class MainWindow(QMainWindow):
         self.text.textChanged.connect(
             lambda: print(self.text.document().toPlainText()))
         self.text.selectionChanged.connect(self.handleSelectionChanged)
-        
+        self.text.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.text.customContextMenuRequested.connect(self.showMenu)
 
     def handleSelectionChanged(self):
         cursor = self.text.textCursor()
@@ -73,10 +80,7 @@ class MainWindow(QMainWindow):
         #self.outputText.insertPlainText(" "+word)
         #self.outputText.setTextBackgroundColor(blue)
         #self.outputText.insertPlainText(" selam ")
-        self.text.setContextMenuPolicy(Qt.CustomContextMenu)
-        self.text.customContextMenuRequested.connect(self.showMenu)
 
-    
 
     def showMenu(self,pos):
         contextMenu = QMenu(self)
@@ -101,13 +105,29 @@ class MainWindow(QMainWindow):
         self.combo_box.setCurrentIndex(0)
         self.combo_box.currentIndexChanged.connect(self.selectionchange)
     
+    
+    
     def selectionchange(self,i):
         print ("Items in the list are :")
         for count in range(self.combo_box.count()):
             print (self.combo_box.itemText(count))
         print ("Current index",i,"selection changed ",self.combo_box.currentText())
-        if(i==2):
+        if(i==2):#DogruYanlişFonksiyonu
             metin=self.text.document().toPlainText()
+            metin_dizisi=metin_temizle(metin)
+            islem_goren_metin_dizisi=[]
+            for i in metin_dizisi:
+                kelimestr=str(dogruBilinenYanlislar(i))+" "
+                islem_goren_metin_dizisi.append(kelimestr)
+                if str(dogruBilinenYanlislar(i)) in "None" :
+                    black = QColor(0, 0, 0)
+                    self.outputText.setTextColor(black)
+                    self.outputText.insertPlainText(i+" ")
+                else:
+                    redColor = QColor(255, 0, 0)
+                    self.outputText.setTextColor(redColor)
+                    self.outputText.insertPlainText(str(dogruBilinenYanlislar(i))+" ")
+            
 
     
 
