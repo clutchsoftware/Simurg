@@ -10,6 +10,9 @@ from PyQt5.QtWidgets import (QApplication, QCheckBox, QColorDialog, QDialog,
                              QInputDialog, QLabel, QLineEdit, QMessageBox, QPushButton, QMenu,QToolBar)
 
 from PyQt5.QtCore import QDir, Qt
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import *
 from PyQt5 import QtGui
 from PyQt5.QtGui import QPainter, QColor, QPen,QCursor
@@ -24,16 +27,25 @@ class MainWindow(QMainWindow):
     
     def __init__(self):
         QMainWindow.__init__(self)
-        self.setMinimumSize(QSize(1030, 650))    
+        self.setMinimumSize(QSize(1030, 650))
         self.setWindowTitle("Simurg") 
-        self.choose_file_button()
+        self.toolbar_init()
+        self.simurgSetIcon()
         self.textareaMain()
         self.textareaSimurg()
         self.selectItem()
         self.chooseSimurgFunciton()
-        self.toolbar_init()
+        
         self.fileName = None
     
+    def simurgSetIcon(self):
+        self.setWindowIcon(QIcon(path+'/image/simurg.png')) 
+        labelImage = QLabel(self)
+        pixmap = QPixmap(path + '/image/simurg.png')
+        labelImage.setPixmap(pixmap) 
+        labelImage.resize(100,100) 
+        labelImage.move(492,270)  
+
     def toolbar_init(self):
         text=QPlainTextEdit()
         outputText = QTextEdit()
@@ -98,14 +110,7 @@ class MainWindow(QMainWindow):
     def chooseSimurgFunciton(self):
         pybutton = QPushButton('Fonksiyonu Uygula', self)
         pybutton.resize(150,32)
-        pybutton.move(440, 570)
-
-
-    def choose_file_button(self):
-        pybutton = QPushButton('Dosya Sec', self)
-        pybutton.clicked.connect(self.chooseFile)
-        pybutton.resize(100,32)
-        pybutton.move(10, 570)
+        pybutton.move(725, 40)
 
     def chooseFile(self):
         options = QFileDialog.Options()
@@ -117,8 +122,8 @@ class MainWindow(QMainWindow):
 
     def textareaMain(self):
         self.text = QPlainTextEdit(self)
-        self.text.move(10,60) #1.para sol sağ 2. para alt-üst
-        self.text.resize(500,500)
+        self.text.move(10,90) #1.para sol sağ 2. para alt-üst
+        self.text.resize(480,500)
        
         self.text.textChanged.connect( #yazıldıkça veriyi çek.
             lambda: print(self.text.document().toPlainText()))
@@ -142,14 +147,27 @@ class MainWindow(QMainWindow):
 
     def showMenu(self,pos):
         contextMenu = QMenu(self)
-        newAct = contextMenu.addAction("Default")
         acts = list()
         es_anlamlilar = list()
         es_anlamlilar = es_anlamli_kelimeler(self.selected_word)
-        for i in es_anlamlilar:
-            acts.append(contextMenu.addAction(i))
+        
 
+        if(len(es_anlamlilar) > 0):
+            for i in es_anlamlilar:
+                        acts.append(contextMenu.addAction(i))
+        
+        else:
+            acts.append(contextMenu.addAction("-----------------------------"))
+            acts.append(contextMenu.addAction("Eş anlamlı kelime bulunamadı."))
+            acts.append(contextMenu.addAction("-----------------------------"))
         action = contextMenu.exec(self.mapToGlobal(pos))
+
+        old_text = self.text.document().toPlainText()
+        for i in range(len(acts)):
+            if acts[i] == action:
+                new_text = old_text[0:self.select_start] + es_anlamlilar[i] + old_text[self.select_end:len(old_text)]
+                self.text.document().setPlainText(new_text)
+                print(es_anlamlilar[i])
         """
         for i in range(len(acts)):
             if acts[i] == action:
@@ -157,12 +175,12 @@ class MainWindow(QMainWindow):
 
     def textareaSimurg(self):
         self.outputText = QTextEdit(self)
-        self.outputText.move(520,60) #1.para sol sağ 2. para alt-üst
-        self.outputText.resize(500,500)
+        self.outputText.move(540,90) #1.para sol sağ 2. para alt-üst
+        self.outputText.resize(480,500)
 
     def selectItem(self):
         self.combo_box = QComboBox(self)
-        self.combo_box.setGeometry(125,570,300,31)
+        self.combo_box.setGeometry(75,40,300,31)
         geek_list = ["Lütfen Bir Fonksiyon Seçin","Kelime Türkçe Mi?","Doğru Bilinen Yanlışlar","Özne-Yüklem İlişkisi"]
         self.combo_box.addItems(geek_list)
         self.combo_box.setCurrentIndex(0)
@@ -185,20 +203,25 @@ class MainWindow(QMainWindow):
         metin_dizisi=[]
         metin_dizisi.clear()
 
+        islenmemis_metin=str(self.text.document().toPlainText()).split(" ")
         metin=self.text.document().toPlainText()
         metin_dizisi=metin_temizle(metin)
-        
+
+        count=0
         for i in metin_dizisi:
+
             islem_goren_metin_dizisi.append(str(dogruBilinenYanlislar(i))+" ")
-    
+
             if str(dogruBilinenYanlislar(i)) in "None" :
+                black = QColor(255, 255, 255)
                 black = QColor(0, 0, 0)
                 self.outputText.setTextColor(black)
-                self.outputText.insertPlainText(i+" ")
+                self.outputText.insertPlainText(islenmemis_metin[count]+" ")
             else:
                 redColor = QColor(255, 0, 0)
                 self.outputText.setTextColor(redColor)
                 self.outputText.insertPlainText(str(dogruBilinenYanlislar(i))+" ")
+            count=count+1
 
 
 if __name__ == "__main__":
