@@ -132,21 +132,23 @@ class MainWindow(QMainWindow):
         islem_goren_metin_dizisi=[]
         metin_dizisi=[]
         metin_dizisi.clear()
-
+        islenmemis_metin=str(self.text.document().toPlainText()).split(" ")
         metin=self.text.document().toPlainText()
         metin_dizisi=metin_temizle(metin)
-        
+        count=0
         for i in metin_dizisi:
+            
             islem_goren_metin_dizisi.append(str(dogruBilinenYanlislar(i))+" ")
     
             if str(dogruBilinenYanlislar(i)) in "None" :
-                black = QColor(255, 255, 255)
+                black = QColor(0, 0, 0)
                 self.outputText.setTextColor(black)
-                self.outputText.insertPlainText(i+" ")
+                self.outputText.insertPlainText(islenmemis_metin[count]+" ")
             else:
                 redColor = QColor(255, 0, 0)
                 self.outputText.setTextColor(redColor)
                 self.outputText.insertPlainText(str(dogruBilinenYanlislar(i))+" ")
+            count=count+1
 
 
 if __name__ == "__main__":
