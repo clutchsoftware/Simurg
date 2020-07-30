@@ -1,23 +1,13 @@
 import sys
 import os
-from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QMainWindow, QLabel, QGridLayout, QWidget
-from PyQt5.QtWidgets import QPushButton,QTextEdit
-from PyQt5.QtCore import QSize  
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import (QApplication, QCheckBox, QColorDialog, QDialog,
-                             QErrorMessage, QFileDialog, QFontDialog, QFrame, QGridLayout,
-                             QInputDialog, QLabel, QLineEdit, QMessageBox, QPushButton, QMenu,QToolBar)
-
-from PyQt5.QtCore import QDir, Qt
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QApplication, QWidget
-from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import *
-from PyQt5 import QtGui
-from PyQt5.QtGui import QPainter, QColor, QPen,QCursor
+import time
 path = os.getcwd()
 sys.path.insert(1,path + '/functions/')
+
+from PyQt5 import QtCore, QtWidgets, QtGui
+from PyQt5.QtCore import QSize, QDir, Qt,QTimer
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import QPixmap, QBrush, QIcon, QPainter, QColor, QPen,QCursor
 from dogruYanlisKelime import dogruBilinenYanlislar
 from SimurgKelimeTemizle import metin_temizle
 from EsAnlamli import *
@@ -35,9 +25,49 @@ class MainWindow(QMainWindow):
         self.textareaSimurg()
         self.selectItem()
         self.chooseSimurgFunciton()
-        
+        self.showLegand()
         self.fileName = None
+        
+    def showLegand(self):
+        self.label = QLabel(' - Doğru Bilinen Yanlış Kelimeler', self)
+        self.label.move(47,606)
+        self.label.adjustSize()
+
+        self.label2 = QLabel(' - Etken-Edilgen Kuralına Uymayan Cümleler', self) 
+        self.label2.move(47,626)
+        self.label2.adjustSize()
+
+        self.label3 = QLabel('- Kelime Kökeni Türkçe Mi? ', self) 
+        self.label3.move(580,606)
+        self.label3.adjustSize()
+
+        self.label4 = QLabel('- Özne Yüklem Uyumsuzluğu', self) 
+        self.label4.move(580,626)
+        self.label4.adjustSize()
+        self.show()
+
+    def paintEvent(self, e):
+        painter = QPainter(self)
+        painter.setPen(QPen(Qt.black, 1, Qt.SolidLine))
+        painter.setBrush(QBrush(Qt.red))
+        painter.drawRect(10, 610, 30,10)
+
+        painter2 = QPainter(self)
+        painter2.setPen(QPen(Qt.black, 1, Qt.SolidLine))
+        painter2.setBrush(QBrush(Qt.yellow))
+        painter2.drawRect(10, 630, 30,10)
+
+        painter3 = QPainter(self)
+        painter3.setPen(QPen(Qt.black, 1, Qt.SolidLine))
+        painter3.setBrush(QBrush(Qt.blue))
+        painter3.drawRect(540, 610, 30,10)
+
+        painter4 = QPainter(self)
+        painter4.setPen(QPen(Qt.black, 1, Qt.SolidLine))
+        painter4.setBrush(QBrush(Qt.darkYellow))
+        painter4.drawRect(540, 630, 30,10)
     
+
     def simurgSetIcon(self):
         self.setWindowIcon(QIcon(path+'/image/simurg.png')) 
         labelImage = QLabel(self)
@@ -181,7 +211,7 @@ class MainWindow(QMainWindow):
     def selectItem(self):
         self.combo_box = QComboBox(self)
         self.combo_box.setGeometry(75,40,300,31)
-        geek_list = ["Lütfen Bir Fonksiyon Seçin","Kelime Türkçe Mi?","Doğru Bilinen Yanlışlar","Özne-Yüklem İlişkisi"]
+        geek_list = ["Lütfen Bir Fonksiyon Seçin","Doğru Bilinen Yanlışlar","Kelime Türkçe Mi?","Özne-Yüklem Uyumsuzluğu","Etken Edilgen Çatı Uyumsuzluğu"]
         self.combo_box.addItems(geek_list)
         self.combo_box.setCurrentIndex(0)
         self.combo_box.currentIndexChanged.connect(self.selectionchange)
@@ -227,5 +257,13 @@ class MainWindow(QMainWindow):
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv) #def
     mainWin = MainWindow()
+    mainWin.move(400,250)
+
+    splash = QSplashScreen(QPixmap(path+'/image/clutch.jpg'))
+    splash.resize(1030,700)
+    splash.move(400,210)
+    splash.show()
+    QTimer.singleShot(1500, splash.close)
+
     mainWin.show()
     sys.exit( app.exec_() )
