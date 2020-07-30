@@ -1,9 +1,10 @@
-  
-  
 import os
+from pathlib import Path
 
 """
 recursive
+
+asil işi yapan kelim_ayir_fonk() ve onun çağırdığı kelime_ayir()
 
 INPUT: bileşik olduğu duüşünülen kelime
 OUTPUT: parçalara ayrılmış kelimenin listesi
@@ -18,7 +19,7 @@ bulamazsa aramayı devam ettiriyor.
 
 
 """
-print(os.getcwd())
+
 f = open("data/out_of_dataset.txt", "r",encoding="utf-8")
 lines = f.readlines()
 
@@ -29,67 +30,66 @@ def kelime_bul (kelime):
             return True
     return False
 
-def kelime_ayir (kelime,ahf):
+def kelime_ayir (kelime):
 
     kelimeler = list()
+    nums = [9,7,5,3,2]
+    for aranacak_harf_sayisi in nums:
+        if(kelime_bul(kelime)):
+            kelimeler.append(kelime)
+            return kelimeler
 
-    if(kelime_bul(kelime)):
-        kelimeler.append(kelime)
-        return kelimeler
 
-
-    aranacak_harf_sayisi = ahf;
-    
-    for x in range(aranacak_harf_sayisi,len(kelime)+1):
         
-        aranacak = kelime[len(kelime)-x : len(kelime)]
-        print(aranacak)
         
-        for line in lines:
+        for x in range(aranacak_harf_sayisi,len(kelime)+1):
             
-            if(aranacak == line[0:(len(line)-1) ]):
-                print("eslesme sagalndı :"+aranacak+", len():"+str(len(aranacak))+" line="+line[0:(len(line)-1) ])
-                kelime = kelime[0:(len(kelime)-len(aranacak))]
+            aranacak = kelime[len(kelime)-x : len(kelime)]
+            print(aranacak)
+            
+            for line in lines:
                 
-                if(len(kelime) > 0):
-                    kalan_kelime_listesi = kelime_ayir(kelime,aranacak_harf_sayisi)
-                    if( len(kalan_kelime_listesi) == 0 ):
-                        kelime = kelime + aranacak
+                if(aranacak == line[0:(len(line)-1) ]):
+                    print("eslesme sagalndı :"+aranacak+", len():"+str(len(aranacak))+" line="+line[0:(len(line)-1) ])
+                    kelime = kelime[0:(len(kelime)-len(aranacak))]
+                    
+                    if(len(kelime) > 0):
+                        kalan_kelime_listesi = kelime_ayir(kelime)
+                        if( len(kalan_kelime_listesi) == 0 ):
+                            kelime = kelime + aranacak
+                        else:
+                            kelimeler.append(aranacak)
+                            
+                            for k in kalan_kelime_listesi:
+                                if k not in kelimeler:
+                                    kelimeler.append(k)
+                                    kelime = kelime[0:len(kelime)-len(k)]
+                                    
+                            
+                            x = aranacak_harf_sayisi 
+                            if(len(kelime)==0):
+                                return kelimeler
                     else:
                         kelimeler.append(aranacak)
-                        
-                        for k in kalan_kelime_listesi:
-                            if k not in kelimeler:
-                                kelimeler.append(k)
-                                kelime = kelime[0:len(kelime)-len(k)]
-                                
-                        
-                        x = aranacak_harf_sayisi 
-                        if(len(kelime)==0):
-                            return kelimeler
-                else:
-                    kelimeler.append(aranacak)
-                    return kelimeler
-                
+                        return kelimeler
+                    
 
-                
+                    
 
     return kelimeler
 
 def kelime_ayir_fonk(ayrilacak_kelime):
     kelimes = list()
-    nums = [5,3,2]
-    for i in nums:
-        kelimes = kelime_ayir(ayrilacak_kelime,i)
-        if( len(kelimes) > 0):
-            kelimes.reverse()
-            return kelimes
-
-    kelimes.append(ayrilacak_kelime)
+    kelimes = kelime_ayir(ayrilacak_kelime)
+    if(len(kelimes) == 0):
+        kelimes.append(ayrilacak_kelime)
+        return kelimes
+    kelimes.reverse()
     return kelimes
+
          
 def bol(kelime,key):
-    
+    lis= list()
     lis=kelime.split(key)
     if("" in lis):
         lis.remove("")
@@ -108,7 +108,14 @@ def cumle_kelime_ayir(cumle):
     return rett
 
 
+"""
+kelim_e = "neyseiyiakşamlar"
+listtt = kelime_ayir_fonk(kelim_e)
 
-cumle = "denemekelimeler"
-listtt = cumle_kelime_ayir(cumle)
+cumlee = ""
+for i in listtt:
+    cumlee = cumlee + " " + i
 print(listtt)
+
+print(cumlee)
+"""
