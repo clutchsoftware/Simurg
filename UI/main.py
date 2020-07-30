@@ -12,6 +12,9 @@ from PyQt5.QtWidgets import (QApplication, QCheckBox, QColorDialog, QDialog,
 from PyQt5.QtCore import QDir, Qt
 from PyQt5.QtWidgets import *
 from PyQt5 import QtGui
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtGui import QIcon
 from PyQt5.QtGui import QPainter, QColor, QPen,QCursor
 path = os.getcwd()
 sys.path.insert(1,path + '/functions/')
@@ -25,6 +28,12 @@ class MainWindow(QMainWindow):
         QMainWindow.__init__(self)
         self.setMinimumSize(QSize(1080, 720))    
         self.setWindowTitle("Simurg") 
+        self.setWindowIcon(QIcon(path+'/image/simurgMainLogo.png')) 
+        labelImage = QLabel(self)
+        pixmap = QPixmap(path+'/image/simurglogo.png')
+        labelImage.setPixmap(pixmap) 
+        labelImage.resize(100,100) 
+        labelImage.move(460,5)   
         self.choose_file_button()
         self.textareaMain()
         self.textareaSimurg()
@@ -131,7 +140,7 @@ class MainWindow(QMainWindow):
             islem_goren_metin_dizisi.append(str(dogruBilinenYanlislar(i))+" ")
     
             if str(dogruBilinenYanlislar(i)) in "None" :
-                black = QColor(0, 0, 0)
+                black = QColor(255, 255, 255)
                 self.outputText.setTextColor(black)
                 self.outputText.insertPlainText(i+" ")
             else:
