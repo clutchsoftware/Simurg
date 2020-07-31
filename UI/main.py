@@ -12,24 +12,35 @@ from PyQt5.QtGui import QPixmap, QBrush, QIcon, QPainter, QColor, QPen,QCursor
 from KelimeTurkceMi import kelime_Turkcemi
 from dogruYanlisKelime import dogruBilinenYanlislar
 from SimurgKelimeTemizle import metin_temizle,kelime_temizle
+from SimurgCumleOlustur import cumle_olustur
+from EtkenEdilgen import etkenEdilgen
 from EsAnlamli import *
 
 class Kelime:
-  def __init__(self, indis, kelime, renk):
-    self.indis = indis
-    self.kelime = kelime
-    self.renk = renk
+    def __init__(self, indis, kelime, renk, cumleindis,cumlerenk):
+        self.indis = indis
+        self.kelime = kelime
+        self.renk = renk
+        self.cumleindis=cumleindis
+        self.cumlerenk=cumlerenk
 
+class Cumle:
+    def __init__(self, indis, cumle, renk):
+        self.indis = indis
+        self.cumle = cumle
+        self.renk = renk
 
 
 class MainWindow(QMainWindow):
     fileName=""
     sonuc_text=[]
+    sonuc_cumle_text=[]
     RedColor=QColor(255, 0, 0)
     OrangeColor=QColor(250, 169, 63)
     YellowColor=QColor(250, 230, 94)
     PurpleColor=QColor(0, 0, 255)
     WhiteColor=QColor(0, 0, 0)
+    TransparentColor=QColor("transparent")
     olusturuldu=0
 
     def __init__(self):
@@ -223,6 +234,7 @@ class MainWindow(QMainWindow):
         self.outputText = QTextEdit(self)
         self.outputText.move(540,90) #1.para sol sağ 2. para alt-üst
         self.outputText.resize(480,500)
+       
 
     def selectItem(self):
         self.combo_box = QComboBox(self)
@@ -244,8 +256,32 @@ class MainWindow(QMainWindow):
         if(i==2):#KelimeTurkcemiFonksiyonu
             self.outputText.clear()
             self.turkceKelime()
+        if(i==4):#EtkenEdilgenÇatıUyumsuzluğu
+            self.outputText.clear()
+            self.etkenEdilgenKontrol()
     
     islem_goren_metin_dizisi={}
+
+    def etkenEdilgenKontrol(self):
+        if(self.olusturuldu==0):
+            self.sonucDizisiOlustur()
+        count=0
+        for i in self.sonuc_cumle_text:
+            print(str(i.cumle)+str(i.indis))
+            s=etkenEdilgen(i.cumle) 
+            if s==0:
+                if(self.sonuc_cumle_text[count].renk==self.TransparentColor):
+                    self.sonuc_cumle_text[count].renk=self.TransparentColor
+            else:
+                self.sonuc_cumle_text[count].renk=self.YellowColor
+                for z in self.sonuc_text:
+                    if(z.cumleindis==count):
+                        z.cumlerenk=self.YellowColor
+                    print(z.cumlerenk)
+
+            count=count+1
+        self.ciktiYazdir()    
+
     def turkceKelime(self):
         self.outputText.clear()
         metin_dizisi=[]
@@ -296,18 +332,33 @@ class MainWindow(QMainWindow):
     
     def sonucDizisiOlustur(self):
         self.sonuc_text.clear()
+        self.sonuc_cumle_text.clear()
         self.olusturuldu=1
-        metin_isle=str(self.text.document().toPlainText()).split(" ")
-        sayac=0
-        for a in metin_isle:
-            self.sonuc_text.append(Kelime(sayac,a,self.WhiteColor))
-            sayac=sayac+1
-
+        sayacCumle=0
+        sayacKelime=0
+        cumle_isle=cumle_olustur(self.text.document().toPlainText())
+        for i in cumle_isle:
+            self.sonuc_cumle_text.append(Cumle(sayacCumle,i,self.WhiteColor))
+            x=str(i).split(" ")
+            for j in x:
+                self.sonuc_text.append(Kelime(sayacKelime,j,self.WhiteColor,sayacCumle,self.TransparentColor))
+                sayacKelime=sayacKelime+1
+                
+            sayacCumle=sayacCumle+1
+       
+        #metin_isle=str(self.text.document().toPlainText()).split(" ")
+        
+        #for a in metin_isle:
+         #   self.sonuc_text.append(Kelime(sayac,a,self.WhiteColor))
+          #  sayac=sayac+1
+    
     def ciktiYazdir(self):
         self.outputText.clear()
         for a in self.sonuc_text:
+            
+            self.outputText.setTextBackgroundColor(a.cumlerenk)
             self.outputText.setTextColor(a.renk)
-            self.outputText.insertPlainText(a.kelime+" ")  
+            self.outputText.insertPlainText(a.kelime+" ")   
      
         
 if __name__ == "__main__":
