@@ -43,6 +43,7 @@ class MainWindow(QMainWindow):
     WhiteColor=QColor(0, 0, 0) #Darkmode için (255,255,255) olmalıdır.
     TransparentColor=QColor("transparent")
     olusturuldu=0
+    aktifIndis=0
 
     def __init__(self):
         QMainWindow.__init__(self)
@@ -170,6 +171,7 @@ class MainWindow(QMainWindow):
         pybutton = QPushButton('Fonksiyonu Uygula', self)
         pybutton.resize(150,32)
         pybutton.move(725, 40)
+        pybutton.clicked.connect(self.fonksiyonUygula)
 
     def chooseFile(self):
         options = QFileDialog.Options()
@@ -246,21 +248,22 @@ class MainWindow(QMainWindow):
         self.combo_box.currentIndexChanged.connect(self.selectionchange)
     
     def selectionchange(self,i):
-        print ("Items in the list are :")
-        for count in range(self.combo_box.count()):
-            print (self.combo_box.itemText(count))
-        print ("Current index",i,"selection changed ",self.combo_box.currentText())
-
-        if(i==1):#DogruYanlişFonksiyonu
+        self.aktifIndis=i
+        
+    
+    def fonksiyonUygula(self):
+        if(self.aktifIndis==0):#DogruYanlişFonksiyonu
+            pass
+        if(self.aktifIndis==1):#DogruYanlişFonksiyonu
             self.outputText.clear()
             self.dogruYanlis()
-        if(i==2):#KelimeTurkcemiFonksiyonu
+        if(self.aktifIndis==2):#KelimeTurkcemiFonksiyonu
             self.outputText.clear()
             self.turkceKelime()
-        if(i==3):#OzneYüklemUyumsuzluğu
+        if(self.aktifIndis==3):#OzneYüklemUyumsuzluğu
             self.outputText.clear()
             self.ozneYuklemKontrol()
-        if(i==4):#EtkenEdilgenÇatıUyumsuzluğu
+        if(self.aktifIndis==4):#EtkenEdilgenÇatıUyumsuzluğu
             self.outputText.clear()
             self.etkenEdilgenKontrol()
     
@@ -397,3 +400,4 @@ if __name__ == "__main__":
     QTimer.singleShot(1500, splash.close)
     mainWin.show()
     sys.exit( app.exec_() )
+
