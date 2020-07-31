@@ -1,6 +1,6 @@
 # Simurg [![N|Solid](https://github.com/clutchsoftware/Simurg/blob/master/image/simurg.png?raw=true)](https://clutchsoftware.github.io) 
 
-
+[<i>Simurg Web Sayfası</i>](https://clutchsoftware.github.io)
 <!--Python için bul (NSOLİD)
 #BADGES'ları ekle -->
 
