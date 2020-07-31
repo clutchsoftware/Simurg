@@ -25,6 +25,10 @@ bulamazsa aramayı devam ettiriyor.
 f = open("data/out_of_dataset.txt", "r",encoding="utf-8")
 lines = f.readlines()
 
+
+
+
+
 def kelime_bul (kelime):
     for line in lines:
         if(kelime.lower() == line[0:(len(line)-1) ]):
@@ -46,12 +50,12 @@ def kelime_ayir (kelime):
         for x in range(aranacak_harf_sayisi,len(kelime)+1):
             
             aranacak = kelime[len(kelime)-x : len(kelime)]
-            print(aranacak)
+            #print(aranacak)
             
             for line in lines:
                 
                 if(aranacak.lower() == line[0:(len(line)-1) ]):
-                    print("eslesme sagalndı :"+aranacak+", len():"+str(len(aranacak))+" line="+line[0:(len(line)-1) ])
+                    #print("eslesme sagalndı :"+aranacak+", len():"+str(len(aranacak))+" line="+line[0:(len(line)-1) ])
                     kelime = kelime[0:(len(kelime)-len(aranacak))]
                     
                     if(len(kelime) > 0):
@@ -117,7 +121,7 @@ def bol(kelime):
 def cumle_kelime_ayir(cumle):
     cumle_list = bol(cumle)
     x = [".","!","?"," "]
-    print(cumle_list)
+    #print(cumle_list)
     rett = list()
     ret_cumle = ""
 
@@ -139,10 +143,11 @@ def cumle_kelime_ayir(cumle):
 
 
 
-"""
-kelim_e = "evegeldim."
+kelim_e = "Merhaba nasılsın? Sağ ol, iyiyim. Birazaraştırma yapman lazım."
 listtt = cumle_kelime_ayir(kelim_e)
-#listtt = kelime_ayir_fonk("İstiklalsabah")
-print(listtt)
-"""
 
+
+#listtt = kelime_ayir_fonk("İstiklalsabah")
+
+
+#print(listtt)

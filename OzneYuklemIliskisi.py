@@ -107,4 +107,4 @@ def ozneYuklem(text):
         #print(text," ( Özne-Yüklem arasında ek sorunu yoktur. ) ")
         return 0
 
-print(ozneYuklem(text))
+#print(ozneYuklem(text))

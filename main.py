@@ -15,6 +15,7 @@ from SimurgKelimeTemizle import metin_temizle,kelime_temizle
 from SimurgCumleOlustur import cumle_olustur
 from EtkenEdilgen import etkenEdilgen
 from OzneYuklemIliskisi import ozneYuklem
+from KelimeAyirma import cumle_kelime_ayir
 from EsAnlamli import *
 
 class Kelime:
@@ -196,10 +197,9 @@ class MainWindow(QMainWindow):
         self.select_start = cursor.selectionStart()
         self.select_end = cursor.selectionEnd()
 
-        print ("Selection start: %d end: %d" % 
-        (cursor.selectionStart(), cursor.selectionEnd()))
+        #print ("Selection start: %d end: %d" % (cursor.selectionStart(), cursor.selectionEnd()))
         string=str(self.text.document().toPlainText())
-        print("\033[1;31m"+string[cursor.selectionStart():cursor.selectionEnd()]+"\033[0m")
+        #print("\033[1;31m"+string[cursor.selectionStart():cursor.selectionEnd()]+"\033[0m")
         word=string[cursor.selectionStart():cursor.selectionEnd()]
         self.selected_word=string[cursor.selectionStart():cursor.selectionEnd()]
         redColor = QColor(255, 0, 0)
@@ -227,7 +227,7 @@ class MainWindow(QMainWindow):
             if acts[i] == action:
                 new_text = old_text[0:self.select_start] + es_anlamlilar[i] + old_text[self.select_end:len(old_text)]
                 self.text.document().setPlainText(new_text)
-                print(es_anlamlilar[i])
+                #print(es_anlamlilar[i])
         """
         for i in range(len(acts)):
             if acts[i] == action:
@@ -252,6 +252,7 @@ class MainWindow(QMainWindow):
         
     
     def fonksiyonUygula(self):
+        self.text.setPlainText(cumle_kelime_ayir(self.text.document().toPlainText()))
         if(self.aktifIndis==0):#DogruYanlişFonksiyonu
             pass
         if(self.aktifIndis==1):#DogruYanlişFonksiyonu
@@ -274,7 +275,7 @@ class MainWindow(QMainWindow):
             self.sonucDizisiOlustur()
         count=0
         for i in self.sonuc_cumle_text:
-            print(str(i.cumle)+str(i.indis))
+            #print(str(i.cumle)+str(i.indis))
             s=etkenEdilgen(i.cumle) 
             if s==0:
                 if(self.sonuc_cumle_text[count].renk==self.TransparentColor):
@@ -284,7 +285,7 @@ class MainWindow(QMainWindow):
                 for z in self.sonuc_text:
                     if(z.cumleindis==count):
                         z.cumlerenk=self.YellowColor
-                    print(z.cumlerenk)
+                    #print(z.cumlerenk)
 
             count=count+1
         self.ciktiYazdir() 
@@ -294,7 +295,7 @@ class MainWindow(QMainWindow):
             self.sonucDizisiOlustur()
         count=0
         for i in self.sonuc_cumle_text:
-            print(str(i.cumle)+str(i.indis))
+            #print(str(i.cumle)+str(i.indis))
             s=ozneYuklem(i.cumle) 
             if s==0:
                 if(self.sonuc_cumle_text[count].renk==self.TransparentColor):
@@ -304,7 +305,7 @@ class MainWindow(QMainWindow):
                 for z in self.sonuc_text:
                     if(z.cumleindis==count):
                         z.cumlerenk=self.OrangeColor
-                    print(z.cumlerenk)
+                    #print(z.cumlerenk)
 
             count=count+1
         self.ciktiYazdir()       
