@@ -1,3 +1,5 @@
+  
+  
 import os
 from pathlib import Path
 
@@ -23,10 +25,9 @@ bulamazsa aramayı devam ettiriyor.
 f = open("data/out_of_dataset.txt", "r",encoding="utf-8")
 lines = f.readlines()
 
-
 def kelime_bul (kelime):
     for line in lines:
-        if(kelime == line[0:(len(line)-1) ]):
+        if(kelime.lower() == line[0:(len(line)-1) ]):
             return True
     return False
 
@@ -49,7 +50,7 @@ def kelime_ayir (kelime):
             
             for line in lines:
                 
-                if(aranacak == line[0:(len(line)-1) ]):
+                if(aranacak.lower() == line[0:(len(line)-1) ]):
                     print("eslesme sagalndı :"+aranacak+", len():"+str(len(aranacak))+" line="+line[0:(len(line)-1) ])
                     kelime = kelime[0:(len(kelime)-len(aranacak))]
                     
@@ -88,34 +89,60 @@ def kelime_ayir_fonk(ayrilacak_kelime):
     return kelimes
 
          
-def bol(kelime,key):
+def bol(kelime):
     lis= list()
-    lis=kelime.split(key)
+    x = [".","!","?"," ",","] # ayrılması gerekenler
+    i=0
+    while( len(kelime) > 0 and i<len(kelime)):
+
+        
+
+        if ( kelime[i] in x):
+            lis.append(kelime[0:i])
+            lis.append(kelime[i])
+            kelime=kelime[i+1:len(kelime)]
+            i=0
+            continue
+
+        i=i+1
+
+
     if("" in lis):
         lis.remove("")
-    
+
     return lis
 
 
 
 def cumle_kelime_ayir(cumle):
-    cumle_list = bol(cumle," ")
+    cumle_list = bol(cumle)
+    x = [".","!","?"," "]
+    print(cumle_list)
     rett = list()
+    ret_cumle = ""
+
     for i in range(len(cumle_list)):
-        temp = kelime_ayir_fonk(cumle_list[i])
-        for t in temp:
-            rett.append(t)
-    return rett
+        if (cumle_list[i] not in x):
+            temp = kelime_ayir_fonk(cumle_list[i])
+            for t in temp:
+                
+                rett.append(t)
+                rett.append(" ")
+            rett.pop()
+
+        else:
+            rett.append(cumle_list[i])
+    #return rett
+    for i in rett:
+        ret_cumle = ret_cumle + i
+    return ret_cumle
+
 
 
 """
-kelim_e = "neyseiyiakşamlar"
-listtt = kelime_ayir_fonk(kelim_e)
-
-cumlee = ""
-for i in listtt:
-    cumlee = cumlee + " " + i
+kelim_e = "evegeldim."
+listtt = cumle_kelime_ayir(kelim_e)
+#listtt = kelime_ayir_fonk("İstiklalsabah")
 print(listtt)
-
-print(cumlee)
 """
+
