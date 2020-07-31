@@ -144,7 +144,7 @@ def cumle_kelime_ayir(cumle):
 
 
 kelim_e = "Merhaba nasılsın? Sağ ol, iyiyim. Birazaraştırma yapman lazım."
-listtt = cumle_kelime_ayir(kelim_e)
+#listtt = cumle_kelime_ayir(kelim_e)
 
 
 #listtt = kelime_ayir_fonk("İstiklalsabah")
