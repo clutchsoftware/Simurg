@@ -37,10 +37,10 @@ class MainWindow(QMainWindow):
     sonuc_text=[]
     sonuc_cumle_text=[]
     RedColor=QColor(255, 0, 0)
-    OrangeColor=QColor(250, 169, 63)
+    OrangeColor=QColor(110, 125, 0)
     YellowColor=QColor(250, 230, 94)
     PurpleColor=QColor(0, 0, 255)
-    WhiteColor=QColor(0, 0, 0)
+    WhiteColor=QColor(0, 0, 0) #Darkmode için (255,255,255) olmalıdır.
     TransparentColor=QColor("transparent")
     olusturuldu=0
 
