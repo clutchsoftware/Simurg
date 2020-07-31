@@ -12,6 +12,16 @@ Zaman zaman hepimiz yazı yazarız. Bu, kimi zaman bir makale kimi zamansa bir e
 
 Simurg işte tam da o gereksinimi hissettiğimiz anda metinlerimizi düzenlemek için CLUTCH Yazılım Ekibi tarafından oluşturuldu.
 
+## ➤ Yükleme Ve Çalıştırma
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#getting-started-quick)
+
+```sh
+$ git clone https://github.com/clutchsoftware/Simurg.git
+$ cd Simurg
+$ chmod +x script.sh
+$ ./script.sh
+```
+
 # ➤ Simurg'un Kanatları
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)]()
 
