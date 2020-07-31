@@ -14,6 +14,7 @@ from dogruYanlisKelime import dogruBilinenYanlislar
 from SimurgKelimeTemizle import metin_temizle,kelime_temizle
 from SimurgCumleOlustur import cumle_olustur
 from EtkenEdilgen import etkenEdilgen
+from OzneYuklemIliskisi import ozneYuklem
 from EsAnlamli import *
 
 class Kelime:
@@ -256,6 +257,9 @@ class MainWindow(QMainWindow):
         if(i==2):#KelimeTurkcemiFonksiyonu
             self.outputText.clear()
             self.turkceKelime()
+        if(i==3):#OzneYüklemUyumsuzluğu
+            self.outputText.clear()
+            self.ozneYuklemKontrol()
         if(i==4):#EtkenEdilgenÇatıUyumsuzluğu
             self.outputText.clear()
             self.etkenEdilgenKontrol()
@@ -280,7 +284,27 @@ class MainWindow(QMainWindow):
                     print(z.cumlerenk)
 
             count=count+1
-        self.ciktiYazdir()    
+        self.ciktiYazdir() 
+
+    def ozneYuklemKontrol(self):
+        if(self.olusturuldu==0):
+            self.sonucDizisiOlustur()
+        count=0
+        for i in self.sonuc_cumle_text:
+            print(str(i.cumle)+str(i.indis))
+            s=ozneYuklem(i.cumle) 
+            if s==0:
+                if(self.sonuc_cumle_text[count].renk==self.TransparentColor):
+                    self.sonuc_cumle_text[count].renk=self.TransparentColor
+            else:
+                self.sonuc_cumle_text[count].renk=self.OrangeColor
+                for z in self.sonuc_text:
+                    if(z.cumleindis==count):
+                        z.cumlerenk=self.OrangeColor
+                    print(z.cumlerenk)
+
+            count=count+1
+        self.ciktiYazdir()       
 
     def turkceKelime(self):
         self.outputText.clear()
