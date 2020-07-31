@@ -5,6 +5,7 @@ path = os.getcwd()
 veri_seti = open(path + "/data/benzersiz_Kelimeler.txt","r")
 veri_satiri=[]
 def kelime_Turkcemi(girilen_Kelime):
+    girilen_Kelime=girilen_Kelime.lower()
     veri_seti = open(path + "/data/benzersiz_Kelimeler.txt","r")
     veri_satiri = veri_seti.readlines()
 
