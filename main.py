@@ -242,7 +242,7 @@ class MainWindow(QMainWindow):
     def selectItem(self):
         self.combo_box = QComboBox(self)
         self.combo_box.setGeometry(75,40,300,31)
-        geek_list = ["Lütfen Bir Fonksiyon Seçin","Doğru Bilinen Yanlışlar","Kelime Türkçe Mi?","Özne-Yüklem Uyumsuzluğu","Etken Edilgen Çatı Uyumsuzluğu"]
+        geek_list = ["Lütfen Bir Fonksiyon Seçin","Doğru Bilinen Yanlışlar","Kelime Türkçe Mi?","Özne-Yüklem Uyumsuzluğu","Etken Edilgen Çatı Uyumsuzluğu","Birleşikleri Ayır"]
         self.combo_box.addItems(geek_list)
         self.combo_box.setCurrentIndex(0)
         self.combo_box.currentIndexChanged.connect(self.selectionchange)
@@ -252,7 +252,7 @@ class MainWindow(QMainWindow):
         
     
     def fonksiyonUygula(self):
-        self.text.setPlainText(cumle_kelime_ayir(self.text.document().toPlainText()))
+        
         if(self.aktifIndis==0):#DogruYanlişFonksiyonu
             pass
         if(self.aktifIndis==1):#DogruYanlişFonksiyonu
@@ -267,6 +267,11 @@ class MainWindow(QMainWindow):
         if(self.aktifIndis==4):#EtkenEdilgenÇatıUyumsuzluğu
             self.outputText.clear()
             self.etkenEdilgenKontrol()
+        if(self.aktifIndis==5):#BirleşikKelime 
+            self.outputText.clear()
+            self.text.setPlainText(cumle_kelime_ayir(self.text.document().toPlainText()))
+            self.olusturuldu=0
+            
     
     islem_goren_metin_dizisi={}
 
