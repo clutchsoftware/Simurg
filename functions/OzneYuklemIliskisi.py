@@ -2,10 +2,10 @@ from trnlp import TrnlpWord
 from SimurgKelimeTemizle import kelime_temizle
 
 
-#text = "İnsanlar buraya geldiler."
+text = "İnsanlar buraya geldiler."
 #text = "İnsanlar buraya geldi."
 #text = "Birkaç kişiler geldiler."
-text = "Bizimkilerle sizin eve geldim."
+#text = "Bizimkilerle sizin eve geldim."
 
 def ozneYuklem(text):
 
@@ -50,9 +50,13 @@ def ozneYuklem(text):
         fiil_koku = ""
         kisi_ekleri = ["{Ke1t}", "{Ke2t}", "{Ke3t}", "{Ke1ç}", "{Ke2ç}", "{Ke3ç}"]
         for i in kisi_ekleri:
-            for j in fiil:
-                if i in j:
-                    fiil_koku = i
+            if not fiil:
+                fiil_koku="None"
+            else:
+                for j in fiil:
+                    if i in j:
+                        fiil_koku = i
+                
         return fiil_koku
 
     fiil_koku = fiil_kisi_ekini_bul(fiil)
