@@ -2,10 +2,11 @@ from SimurgCumleOlustur import cumle_olustur
 from SimurgKelimeTemizle import kelime_temizle, metin_temizle 
 import pandas as pd 
 import csv
-
+import os
+path=os.getcwd()
 def dogruBilinenYanlislar(kelime):
     #Data set import
-    data = pd.read_csv("/home/zeki/NLP/Simurg/data/dogruBilinenYanlislar.csv") 
+    data = pd.read_csv(path+"/data/dogruBilinenYanlislar.csv") 
     data_yanlis_listesi = list(data["yanlis"])
     data_dogru_listesi = list(data["dogru"])
 

@@ -3,8 +3,9 @@ from trnlp import *
 
 path = os.getcwd()
 veri_seti = open(path + "/data/benzersiz_Kelimeler.txt","r")
+veri_satiri=[]
 def kelime_Turkcemi(girilen_Kelime):
-
+    veri_seti = open(path + "/data/benzersiz_Kelimeler.txt","r")
     veri_satiri = veri_seti.readlines()
 
     nesne_Ilk = TrnlpToken()
@@ -25,8 +26,10 @@ def kelime_Turkcemi(girilen_Kelime):
                 kelime_Turkcemi = True
                 break
         
-        if kelime_Turkcemi :
-            print(True)
+    if kelime_Turkcemi :
+        veri_satiri.clear()
+        return "True"
 
-        else:
-            print(False)
+    else:
+        veri_satiri.clear()
+        return "False"
