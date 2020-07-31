@@ -24,13 +24,13 @@ Simurg işte tam da o gereksinimi hissettiğimiz anda metinlerimizi düzenlemek 
 * [Doğru Bilinen Yanlışları Gör](#Doğru-Bilinen-Yanlışları-Gör)
 * [Kelime Kökeni Sorgula](#Kelime-Kökenini-Sorgula)
 * [Etken Edilgen Çatı Uyumsuzluğunu Farket](#Etken-Edilgen-Çatı-Uyumsuzluğunu-Farket)
-* [Özne Yüklem İlişkisini Gözden Geçir](Özne-Yüklem-İlişkisini-Gözden-Geçir)
-* [Birleşik Kelimeleri Kopar](Birleşik-Kelimeleri-Kopar)
+* [Özne Yüklem İlişkisini Gözden Geçir](#Özne-Yüklem-İlişkisini-Gözden-Geçir)
+* [Birleşik Kelimeleri Kopar](#Birleşik-Kelimeleri-Kopar)
 
 ➤ <b> Yardımcı Fonksiyonlar</b>
     
-* [Simurg Kelime Temizle](Simurg-Kelime-Temizle)
-* [Simurg Cümle Oluştur](Simurg-Cümle-Oluştur)
+* [Simurg Kelime Temizle](#Simurg-Kelime-Temizle)
+* [Simurg Cümle Oluştur](#Simurg-Cümle-Oluştur)
 
 ## Eş Anlamlıyı Getir
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)
