@@ -190,6 +190,8 @@ Output:
 
 > Bazen yazılarımızın, metinlerimizin yetişmesi için hızlı yazmaya çalışırız. Bu hız esnasında birleşik olmaması gereken kelimeleri birleşik bir halde yazabiliriz. Bu tür durumlar kimi zaman gözden kaçabilir. Bunların düzeltilmesi için ise Simurg'un **Birleşik Kelimeleri Kopar** fonksiyonunu geliştirdik.
 
+![Alt Text](https://github.com/clutchsoftware/clutchsoftware.github.io/blob/master/birlesikayir.gif?raw=true)
+
 ```python
 Örnek metin:
 (YANLIŞ) TürkçeDoğalDilİşleme
