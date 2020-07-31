@@ -1,9 +1,6 @@
 # Simurg
 
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid) 
-
-
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+[![N|Solid](https://github.com/clutchsoftware/Simurg/blob/master/image/simurg.png?raw=true)](https://clutchsoftware.github.io) 
 
 <!--Python için bul (NSOLİD)
 #BADGES'ları ekle -->
@@ -88,6 +85,8 @@ Output:
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)
 
 >Çağımız şartları gereği dilimize birçok yabancı kelime nüfuz etmektedir. Dilimizin benliğini koruma bilincine sahip olmanın ne kadar önemli olduğunun farkındayız. Bu farkındalığı uygulamak için Simurg'un **Kelime Kökeni Sorgula** fonksiyonunu geliştirdik.
+
+![Alt Text](https://github.com/clutchsoftware/clutchsoftware.github.io/blob/master/kelimeturkcemi.gif?raw=true)
 
 ```python
 Örnek metin:
