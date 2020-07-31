@@ -1,6 +1,7 @@
 import sys
 import os
 import time
+
 path = os.getcwd()
 sys.path.insert(1,path + '/functions/')
 
@@ -8,13 +9,29 @@ from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtCore import QSize, QDir, Qt,QTimer
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QPixmap, QBrush, QIcon, QPainter, QColor, QPen,QCursor
+from KelimeTurkceMi import kelime_Turkcemi
 from dogruYanlisKelime import dogruBilinenYanlislar
-from SimurgKelimeTemizle import metin_temizle
+from SimurgKelimeTemizle import metin_temizle,kelime_temizle
 from EsAnlamli import *
+
+class Kelime:
+  def __init__(self, indis, kelime, renk):
+    self.indis = indis
+    self.kelime = kelime
+    self.renk = renk
+
+
 
 class MainWindow(QMainWindow):
     fileName=""
-    
+    sonuc_text=[]
+    RedColor=QColor(255, 0, 0)
+    OrangeColor=QColor(250, 169, 63)
+    YellowColor=QColor(250, 230, 94)
+    PurpleColor=QColor(0, 0, 255)
+    WhiteColor=QColor(0, 0, 0)
+    olusturuldu=0
+
     def __init__(self):
         QMainWindow.__init__(self)
         self.setMinimumSize(QSize(1030, 650))
@@ -26,8 +43,9 @@ class MainWindow(QMainWindow):
         self.selectItem()
         self.chooseSimurgFunciton()
         self.showLegand()
-        self.fileName = None
         
+        self.fileName = None
+
     def showLegand(self):
         self.label = QLabel(' - Doğru Bilinen Yanlış Kelimeler', self)
         self.label.move(47,606)
@@ -67,7 +85,6 @@ class MainWindow(QMainWindow):
         painter4.setBrush(QBrush(Qt.darkYellow))
         painter4.drawRect(540, 630, 30,10)
     
-
     def simurgSetIcon(self):
         self.setWindowIcon(QIcon(path+'/image/simurg.png')) 
         labelImage = QLabel(self)
@@ -155,8 +172,7 @@ class MainWindow(QMainWindow):
         self.text.move(10,90) #1.para sol sağ 2. para alt-üst
         self.text.resize(480,500)
        
-        self.text.textChanged.connect( #yazıldıkça veriyi çek.
-            lambda: print(self.text.document().toPlainText()))
+        self.text.textChanged.connect(self.sonucDizisiOlustur)
         self.text.selectionChanged.connect(self.handleSelectionChanged)
         self.text.setContextMenuPolicy(Qt.CustomContextMenu)
         self.text.customContextMenuRequested.connect(self.showMenu)
@@ -222,38 +238,78 @@ class MainWindow(QMainWindow):
             print (self.combo_box.itemText(count))
         print ("Current index",i,"selection changed ",self.combo_box.currentText())
 
-        if(i==2):#DogruYanlişFonksiyonu
+        if(i==1):#DogruYanlişFonksiyonu
             self.outputText.clear()
             self.dogruYanlis()
+        if(i==2):#KelimeTurkcemiFonksiyonu
+            self.outputText.clear()
+            self.turkceKelime()
     
+    islem_goren_metin_dizisi={}
+    def turkceKelime(self):
+        self.outputText.clear()
+        metin_dizisi=[]
+        metin_dizisi.clear()
+        islenmemis_metin=[]
+
+        islenmemis_metin=str(self.text.document().toPlainText()).split(" ")
+        metin=self.text.document().toPlainText()
+        metin_dizisi=metin_temizle(metin)
+
+        if(self.olusturuldu==0):
+            self.sonucDizisiOlustur()
+
+        count=0
+        for i in self.sonuc_text:
+            s=kelime_Turkcemi(i.kelime) 
+            if s in "True" :
+                if(self.sonuc_text[count].renk==self.WhiteColor):
+                    self.sonuc_text[count].renk=self.WhiteColor
+            else:
+                self.sonuc_text[count].renk=self.PurpleColor 
+            count=count+1
+        self.ciktiYazdir()    
 
     def dogruYanlis(self):
         self.outputText.clear()
-        islem_goren_metin_dizisi=[]
+        
         metin_dizisi=[]
         metin_dizisi.clear()
 
         islenmemis_metin=str(self.text.document().toPlainText()).split(" ")
         metin=self.text.document().toPlainText()
         metin_dizisi=metin_temizle(metin)
-
+        
         count=0
-        for i in metin_dizisi:
-
-            islem_goren_metin_dizisi.append(str(dogruBilinenYanlislar(i))+" ")
-
-            if str(dogruBilinenYanlislar(i)) in "None" :
-                black = QColor(255, 255, 255)
-                black = QColor(0, 0, 0)
-                self.outputText.setTextColor(black)
-                self.outputText.insertPlainText(islenmemis_metin[count]+" ")
+        if(self.olusturuldu==0):
+            self.sonucDizisiOlustur()
+        for i in self.sonuc_text:
+            if str(dogruBilinenYanlislar(kelime_temizle(i.kelime))) in "None" :
+                if(self.sonuc_text[count].renk==self.WhiteColor):
+                    self.sonuc_text[count].renk=self.WhiteColor
             else:
-                redColor = QColor(255, 0, 0)
-                self.outputText.setTextColor(redColor)
-                self.outputText.insertPlainText(str(dogruBilinenYanlislar(i))+" ")
+                self.sonuc_text[count].renk=self.RedColor
+                self.sonuc_text[count].kelime=str(dogruBilinenYanlislar(kelime_temizle(i.kelime)))
             count=count+1
+        self.ciktiYazdir()
 
+    
+    def sonucDizisiOlustur(self):
+        self.sonuc_text.clear()
+        self.olusturuldu=1
+        metin_isle=str(self.text.document().toPlainText()).split(" ")
+        sayac=0
+        for a in metin_isle:
+            self.sonuc_text.append(Kelime(sayac,a,self.WhiteColor))
+            sayac=sayac+1
 
+    def ciktiYazdir(self):
+        self.outputText.clear()
+        for a in self.sonuc_text:
+            self.outputText.setTextColor(a.renk)
+            self.outputText.insertPlainText(a.kelime+" ")  
+     
+        
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv) #def
     mainWin = MainWindow()
@@ -264,6 +320,5 @@ if __name__ == "__main__":
     splash.move(400,210)
     splash.show()
     QTimer.singleShot(1500, splash.close)
-
     mainWin.show()
     sys.exit( app.exec_() )
