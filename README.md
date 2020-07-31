@@ -11,6 +11,11 @@ Zaman zaman hepimiz yazı yazarız. Bu, kimi zaman bir makale kimi zamansa bir e
 
 Simurg işte tam da o gereksinimi hissettiğimiz anda metinlerimizi düzenlemek için CLUTCH Yazılım Ekibi tarafından oluşturuldu.
 
+> **NOT:** Simurg'a verilen girdilerin Türkçe noktalama işareti kurallarına uygun olması gerekmektedir. 
+**Örnek:** <br>
+ Uzun süredir bu projede çalıştım (YANLIŞ) <br>
+ Uzun süredir bu projede çalıştım. (DOĞRU)
+
 ## ➤ Yükleme Ve Çalıştırma
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#getting-started-quick)
 
@@ -252,3 +257,35 @@ Output:
 ["Acikhack'in yapmış olduğu yarışmaya katılacağız.", 'Bunun için çok heyecanlıyız.']
 ```
 
+
+## Simurg Tüyleri
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/fire.png)
+
+>**Simurg içinde kullanılan fonksiyonlar** <br>
+**Simurg'un has fonksiyonları:** <br>
+> * Eş Anlamlıyı Getir**
+> * Doğru Bilinen Yanlışları Gör
+> * Kelime Kökeni Sorgula
+> * Etken Edilgen Çatı Uyumsuzluğunu Farket
+> * Özne Yüklem İlişkisini Gözden Geçir
+> * Birleşik Kelimeleri Kopar
+> * Simurg Kelime Temizle**
+> * Simurg Cümle Oluştur** <br>
+>  \** Fonksiyonları içinde **sadece** trnlp kütüphanesinden kelime kökleri ayırma fonksiyonu kullanılmıştır.
+    
+## Ekip Üyeleri
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/fire.png)
+
+[@Zeki Ahmet Bayar](https://github.com/zekiahmetbayar)
+ 
+[@Tuğba Fıçıcı](https://github.com/tugbaficici)
+
+[@Abdülkerim Aksak](https://github.com/KerimAksak)
+
+[@Muaz Dervent](https://github.com/muazdervent)
+
+
+## Lisans
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/solar.png)
+
+Simurg MIT lisansı ile lisanslanmıştır.
