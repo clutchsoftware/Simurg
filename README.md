@@ -1,23 +1,4 @@
-# Simurg [![N|Solid](https://github.com/clutchsoftware/Simurg/blob/master/image/simurg.png?raw=true)](https://clutchsoftware.github.io) 
-
-[<i>Simurg Web Sayfası</i>](https://clutchsoftware.github.io)
-<!--Python için bul (NSOLİD)
-#BADGES'ları ekle -->
-
-**Simurg Sunum Dosyası**
-
-[<i>Sunum Dosyası</i>](https://github.com/clutchsoftware/Simurg/blob/master/image/CLUTCH%20SOFTWARE%20TEAM.pdf)
-
-
-**Simurg Tanıtım Videosu**
-<div align="left">
-  
-  <a href="https://www.youtube.com/embed/UXbS5r8p8Bw"><img src="https://github.com/clutchsoftware/clutchsoftware.github.io/blob/master/thumbnail_banner.png" width="350" height="200" alt="IMAGE ALT TEXT"></a>
-
-</div>
-  
-[<i>Youtube Tanıtım Link</i>](https://www.youtube.com/watch?v=UXbS5r8p8Bw&t=2s)
-
+# Simurg
 
 # ➤ Hepimiz Yazıyoruz
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)]()
