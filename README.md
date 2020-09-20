@@ -1,4 +1,8 @@
-# Simurg
+# Simurg [![N|Solid](https://raw.githubusercontent.com/clutchsoftware/Simurg/master/image/simurg_logo_25.png)](https://clutchsoftware.github.io) 
+
+**Simurg Sunum Dosyası**
+
+[<i>Sunum Dosyası</i>](https://github.com/clutchsoftware/Simurg/blob/master/image/CLUTCH%20SOFTWARE%20TEAM.pdf)
 
 # ➤ Hepimiz Yazıyoruz
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)]()
