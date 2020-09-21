@@ -4,6 +4,15 @@
 
 [<i>Sunum Dosyası</i>](https://github.com/clutchsoftware/Simurg/blob/master/image/CLUTCH%20SOFTWARE%20TEAM.pdf)
 
+**Simurg Tanıtım Videosu**
+<div align="left">
+
+  <a href="https://www.youtube.com/watch?v=o6V4acVPN-g&feature=youtu.be"><img src="https://raw.githubusercontent.com/clutchsoftware/Simurg/master/image/simurgBannerrShadow.jpg" width="350" height="200" alt="IMAGE ALT TEXT"></a>
+
+</div>
+
+[<i>Youtube Tanıtım Link</i>](https://www.youtube.com/watch?v=o6V4acVPN-g&feature=youtu.be)
+
 # ➤ Hepimiz Yazıyoruz
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)]()
 
