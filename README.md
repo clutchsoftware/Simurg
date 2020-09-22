@@ -280,7 +280,7 @@ Output:
 > * Birleşik Kelimeleri Kopar
 > * Simurg Kelime Temizle**
 > * Simurg Cümle Oluştur** <br>
->  \** Fonksiyonları içinde **sadece** trnlp kütüphanesinden kelime kökleri ayırma fonksiyonu kullanılmıştır.
+>  \** Fonksiyonları içinde **sadece** trnlp kütüphanesinden kelime kökleri ayırma fonksiyonu kullanılmıştır. Bunun haricinde hiçbir hazır fonksiyon kullanılmamıştır.
     
 ## Ekip Üyeleri
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/fire.png)
