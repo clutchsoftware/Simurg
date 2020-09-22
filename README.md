@@ -7,7 +7,7 @@
 **Simurg Tanıtım Videosu**
 <div align="left">
 
-  <a href="https://www.youtube.com/watch?v=o6V4acVPN-g&feature=youtu.be"><img src="https://raw.githubusercontent.com/clutchsoftware/Simurg/master/image/simurgBannerrShadow.jpg" width="350" height="200" alt="IMAGE ALT TEXT"></a>
+  <a href="https://www.youtube.com/watch?v=fhQTD2MqWdU"><img src="https://raw.githubusercontent.com/clutchsoftware/Simurg/master/image/simurgBannerrShadow.jpg" width="350" height="200" alt="IMAGE ALT TEXT"></a>
 
 </div>
 
@@ -57,7 +57,7 @@ $ ./script.sh
 
 >Metinlerimizi oluştururken kelime dağarcığımızın yetersizliği nedeniyle bazı kelimeleri birden fazla kez kullanabiliriz. Bu kullanım fazlalığı ise metin içindeki akışı bozabilir. Bozulan akışı düzeltmek için kelimelerin eş anlamlılarına hakim olmamız gerekir. Bu gereksinimi ortadan kaldırmak için ise Simurg'un **Eş Anlamlıyı Getir** fonksiyonunu geliştirdik. 
 
-![Alt Text](https://github.com/clutchsoftware/clutchsoftware.github.io/blob/master/esanlamli.gif?raw=true)
+![Alt Text](https://github.com/clutchsoftware/clutchsoftware/blob/master/My%20Video.gif?raw=true)
 
 ```python
 Örnek metin:
