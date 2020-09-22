@@ -11,7 +11,7 @@
 
 </div>
 
-[<i>Youtube Tanıtım Link</i>](https://www.youtube.com/watch?v=o6V4acVPN-g&feature=youtu.be)
+[<i>Youtube Tanıtım Link</i>](https://www.youtube.com/watch?v=fhQTD2MqWdU)
 
 # ➤ Hepimiz Yazıyoruz
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)]()
