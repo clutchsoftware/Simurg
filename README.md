@@ -83,7 +83,7 @@ Output:
 >Gündelik hayatta konuşurken bizim de fark etmediğimiz bazı kelime veya tamlamalar yanlış olmasına rağmen doğruymuşcasına zihnimize yerleşmiştir. Yanlışlarımızı fark edip doğrularını öğrenmek ve metinlerimizde bu yanlışların önüne geçmek için Simurg'un **Doğru Bilinen Yanlışları Gör** fonksiyonunu geliştirdik.
 
 
-![Alt Text](https://github.com/clutchsoftware/clutchsoftware.github.io/blob/master/dogrubilinen.gif?raw=true)
+![Alt Text](https://github.com/clutchsoftware/clutchsoftware/blob/master/dogruBilinen.gif?raw=true)
 
 
 ```python
@@ -109,7 +109,7 @@ Output:
 
 >Çağımız şartları gereği dilimize birçok yabancı kelime nüfuz etmektedir. Dilimizin benliğini koruma bilincine sahip olmanın ne kadar önemli olduğunun farkındayız. Bu farkındalığı uygulamak için Simurg'un **Kelime Kökeni Sorgula** fonksiyonunu geliştirdik.
 
-![Alt Text](https://github.com/clutchsoftware/clutchsoftware.github.io/blob/master/kelimeturkcemi.gif?raw=true)
+![Alt Text](https://github.com/clutchsoftware/clutchsoftware/blob/master/kelimeTurkcemi.gif?raw=true)
 
 ```python
 Örnek metin:
@@ -140,7 +140,7 @@ False
 
 > Farkında olmasakta uzun cümleler kurduğumuzda cümlenin etken edilgen çatı uyumsuzluğunu göz ardı edebiliriz. Bu da bizim anlaşılabilirliği düşük cümleler kurmamıza sebebiyet verir. Cümlelerimizin anlaşılabilirliğini yükseltmek için Simurg'un **Etken Edilgen Çatı Uyumsuzluğunu Farket** fonksiyonunu geliştirdik.
 
-![Alt Text](https://github.com/clutchsoftware/clutchsoftware.github.io/blob/master/etkenedilgen.gif?raw=true)
+![Alt Text](https://github.com/clutchsoftware/clutchsoftware/blob/master/etkenEdilgen.gif?raw=true)
 
 ```python
 Örnek metin:
@@ -172,7 +172,7 @@ Output:
 
 >Bir topluluk adına veya çoğul konuştuğumuzda özne ve yüklem arasındaki ilişki uyumsuzluğunun gözden geçirilmesi gerekebilir. Çünkü bu tip durumlarda sıklıkla özne yüklem uyumsuzluğu hatası yapılır. Bu hatayı ortadan kaldırmak için Simurg'un **Özne Yüklem İlişkisini Gözden Geçir** fonksiyonunu geliştirdik.
 
-![Alt Text](https://github.com/clutchsoftware/clutchsoftware.github.io/blob/master/ozneyuklem.gif?raw=true)
+![Alt Text](https://github.com/clutchsoftware/clutchsoftware/blob/master/ozneYuklem.gif?raw=true)
 
 ```python
 Örnek metin:
@@ -204,7 +204,7 @@ Output:
 
 > Bazen yazılarımızın, metinlerimizin yetişmesi için hızlı yazmaya çalışırız. Bu hız esnasında birleşik olmaması gereken kelimeleri birleşik bir halde yazabiliriz. Bu tür durumlar kimi zaman gözden kaçabilir. Bunların düzeltilmesi için ise Simurg'un **Birleşik Kelimeleri Kopar** fonksiyonunu geliştirdik.
 
-![Alt Text](https://github.com/clutchsoftware/clutchsoftware.github.io/blob/master/birlesikayir.gif?raw=true)
+![Alt Text](https://github.com/clutchsoftware/clutchsoftware/blob/master/kelimeAyir.gif?raw=true)
 
 ```python
 Örnek metin:
